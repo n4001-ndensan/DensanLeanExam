@@ -1,0 +1,28 @@
+﻿@page "/task/edit"
+@using BlazorApp3.Domain.Value
+@using BlazorApp3.Domain.Model
+@using BlazorApp3.Application.Service
+@inject NavigationManager NavigationManager
+@inject IStateBox<List<MyTask>> sessionState
+@inject ILogger<MyTaskEdit> Logger
+
+<h3>タスク登録</h3>
+
+<RadzenLabel Text="題名" />
+<br />
+<RadzenTextBox Style="width: 300px" @bind-Value=@myTask.Title></RadzenTextBox>
+<br />
+<RadzenLabel Text="期限" />
+<br />
+<RadzenDatePicker TValue="DateOnly" @bind-Value=@myTask.Deadline></RadzenDatePicker>
+<br />
+<RadzenLabel Text="状態" />
+<br />
+<RadzenDropDown TValue="MyTaskStatus" Data="myTaskStatusList" @bind-Value=@myTask.Status></RadzenDropDown>
+<br />
+<RadzenLabel Text="内容" />
+<br />
+<RadzenTextArea Style="width: 300px" @bind-Value=@myTask.Content></RadzenTextArea>
+<br />
+<RadzenButton Text="取消" ButtonStyle="Radzen.ButtonStyle.Danger" Click="Cancel"></RadzenButton>
+<RadzenButton Text="登録" Click="SaveMyTask"></RadzenButton>

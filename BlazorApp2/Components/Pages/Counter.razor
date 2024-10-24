@@ -6,8 +6,8 @@
 
 <p role="status" class="@statusCssClass">Current count: @currentCount</p>
 
-<button class="btn btn-primary" @onclick="@(() => IncrementCount(+1))">加算</button>
-<button class="btn btn-primary" @onclick="@(() => IncrementCount(-1))">減算</button>
+<RadzenButton Text="加算" Click="@(() => IncrementCount(+1))" class="btn btn-primary"></RadzenButton>
+<RadzenButton Text="減算" Click="@(() => IncrementCount(-1))" class="btn btn-primary"></RadzenButton>
 
 @code {
     private int currentCount = 0;
