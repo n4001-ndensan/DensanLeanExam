@@ -8,6 +8,18 @@
 
 <h3>タスク登録</h3>
 
+<div>
+    @if (errorMessages.Count > 0)
+    {
+        <div class="alert alert-danger" role="alert">
+            @foreach (string errorMessage in errorMessages)
+            {
+                <div>@errorMessage</div>
+            }
+        </div>
+    }
+</div>
+
 <RadzenLabel Text="題名" />
 <br />
 <RadzenTextBox Style="width: 300px" @bind-Value=@myTask.Title></RadzenTextBox>

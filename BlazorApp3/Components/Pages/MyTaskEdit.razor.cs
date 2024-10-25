@@ -8,6 +8,7 @@ public partial class MyTaskEdit
 {
     private readonly MyTask myTask = new();
     private readonly List<MyTaskStatus> myTaskStatusList = Enum.GetValues<MyTaskStatus>().ToList();
+    private readonly List<string> errorMessages = new();
 
     protected override void OnInitialized()
     {
@@ -37,6 +38,15 @@ public partial class MyTaskEdit
         Logger.LogInformation("MyTask Title={{{}}} Deadline={{{}}} Status={{{}}} Content={{{}}}", myTask.Title, myTask.Deadline, myTask.Status, myTask.Content);
 
         await Task.Yield();
+
+        errorMessages.Clear();
+        if (myTask.Title.Trim().Length == 0)
+            errorMessages.Add("題名は必須項目です。");
+        if (myTask.Deadline == default)
+            errorMessages.Add("期限は必須項目です。");
+
+        // エラーがある場合は画面遷移しない
+        if (errorMessages.Count > 0) return;
 
         // 保存
         sessionState?.State?.Add(myTask);
